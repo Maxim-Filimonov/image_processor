@@ -26,4 +26,21 @@ describe ImageProcessor::FileParser do
       its(:original_time) { is_expected.to eq(DateTime.parse('Mon Jun 04 14:33:59 +1000 2007'))}
     end
   end
+
+  describe 'parsing missing data' do
+    it 'uses date time when date_time_original is missing' do
+      parser = described_class.new(file_path: load_fixture('missing_original_time.xml'))
+
+      result = parser.parse.first
+
+      expect(result.original_time).to eq(DateTime.parse('Sun Aug 26 12:55:02 +1000 2007'))
+    end
+  end
+
+  context 'with real file' do
+    it 'can parse it without exceptions' do
+      subject = described_class.new(file_path: '/Users/maxim/repos/redbubble_image_process/data/works.xml')
+      subject.parse
+    end
+  end
 end

@@ -22,8 +22,11 @@ module ImageProcessor
           large: work.css('url[type=large]').text
         }
         original_time = work.css('date_time_original').text
+        date_time = work.css('date_time').text
 
-        Work.new(model: model, make: make, urls: urls, original_time: original_time)
+        Work.new(model: model, make: make, urls: urls,
+          original_time: original_time,
+          date_time: date_time)
       }
     end
   end
