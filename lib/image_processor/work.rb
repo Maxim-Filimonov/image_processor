@@ -2,6 +2,7 @@ require 'date'
 module ImageProcessor
   class Work
     attr_reader :model, :make, :urls, :original_time
+    
     def initialize(args={})
       @model = args.fetch(:model)
       @make = args.fetch(:make)

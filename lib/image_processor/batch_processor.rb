@@ -1,6 +1,5 @@
 require 'image_processor/file_parser'
 require 'image_processor/image_index'
-require 'ostruct'
 
 module ImageProcessor
   class BatchProcessor

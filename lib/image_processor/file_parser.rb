@@ -4,9 +4,11 @@ require 'image_processor/work'
 module ImageProcessor
   class FileParser
     attr_reader :file_path
+
     def initialize(args={})
       @file_path = args.fetch(:file_path)
     end
+
     def parse
       f = File.open(file_path)
       doc = Nokogiri::XML(f)
