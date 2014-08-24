@@ -5,29 +5,26 @@ require 'image_processor/routes'
 
 module ImageProcessor
   module Pages
-    class MakePage < ERB
-      attr_reader :make
+    class ModelPage < ERB
+      attr_reader :model
       def initialize(args={})
-        @make = args.fetch(:make)
+        @model = args.fetch(:model)
         @template = args.fetch(:template, self.class.template)
         super(@template)
       end
 
       def thumbnails
-        make.all_models.first(10).map { |model|
-          Thumbnail.new(model)
+        model.works.map { |work|
+          Thumbnail.new(work)
         }
       end
 
       def nav
         index = NavLink.new(url: Routes.image_index_path, name: 'Index')
-        model_urls = make.model_names.map { |model_name|
-          nav_link = NavLink.new(url: Routes.model_path(make.name, model_name),
-            name: model_name)
-        }
+        make = NavLink.new(url: Routes.make_path(model.make_name), name: model.make_name)
         urls = []
         urls << index
-        urls |= model_urls
+        urls << make
       end
 
       def result
@@ -35,7 +32,7 @@ module ImageProcessor
       end
 
       def path
-        Routes.make_path(make.name)
+        Routes.model_path(model.make_name, model.name)
       end
 
       def self.template
@@ -43,7 +40,7 @@ module ImageProcessor
       end
 
       def title
-        make.name
+        "Image index"
       end
     end
   end

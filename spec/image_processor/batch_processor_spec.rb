@@ -29,9 +29,9 @@ describe ImageProcessor::BatchProcessor do
       allow(file_parser).to receive(:parse).and_return(works)
 
       result = subject.process
-      
-      expect(result.makes['canon'].models['canon 1'].length).to eq(2)
-      expect(result.makes['canon'].models['canon 2'].length).to eq(1)
+
+      expect(result.makes['canon'].get_works('canon 1').length).to eq(2)
+      expect(result.makes['canon'].get_works('canon 2').length).to eq(1)
     end
   end
 end

@@ -1,3 +1,5 @@
+require 'image_processor/model'
+
 module ImageProcessor
   class Make
     attr_reader :models
@@ -9,16 +11,20 @@ module ImageProcessor
     end
 
     def all_models
-      models.map {|k,v| v }.flatten
+      models.map {|k,v| v.works }.flatten
     end
 
     def model_names
       models.keys
     end
 
+    def get_works(model_name)
+      models[model_name].works
+    end
+
     def add_model(work)
-      models[work.model] ||= []
-      models[work.model] << work
+      models[work.model] ||= Model.new(name: work.model, make: self)
+      models[work.model].works << work
     end
   end
 end

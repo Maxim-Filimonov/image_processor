@@ -3,10 +3,12 @@ require 'image_processor/make'
 describe ImageProcessor::Make do
   describe '#all_models' do
     it 'returns all models' do
-      subject.models['canon model'] = [1,2]
-      subject.models['nikon model'] = [3,4]
+      canon = instance_double('ImageProcessor::Work', model:'canon model')
+      nikon = instance_double('ImageProcessor::Work', model: 'nikon model')
+      subject.add_model(canon)
+      subject.add_model(nikon)
 
-      expect(subject.all_models).to contain_exactly(1,2,3,4)
+      expect(subject.all_models).to contain_exactly(canon, nikon)
     end
   end
 
@@ -23,14 +25,14 @@ describe ImageProcessor::Make do
     it 'adds model to models' do
       subject.add_model(work)
 
-      expect(subject.models['canon 1']).to contain_exactly(work)
+      expect(subject.get_works('canon 1')).to contain_exactly(work)
     end
 
     it 'keeps other models when adding a new one' do
       subject.add_model(work)
       subject.add_model(work)
 
-      expect(subject.models['canon 1'].length).to eq(2)
+      expect(subject.get_works('canon 1').length).to eq(2)
     end
   end
 end
