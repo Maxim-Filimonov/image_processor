@@ -14,7 +14,6 @@ describe ImageProcessor::ImageIndex do
       make = subject.add_make('CANON')
       subject.add_make('CANON')
 
-      puts "MAKES - #{subject.makes}"
       expect(subject.makes['CANON']).to eq(make)
     end
   end
