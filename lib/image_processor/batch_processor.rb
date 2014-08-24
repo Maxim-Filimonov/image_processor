@@ -1,4 +1,3 @@
-require 'image_processor/file_parser'
 require 'image_processor/image_index'
 
 module ImageProcessor
@@ -6,7 +5,7 @@ module ImageProcessor
     attr_reader :parser
 
     def initialize(args={})
-      @parser = args[:parser] || ImageProcessor::FileParser.new
+      @parser = args[:parser]
     end
     def process
       works = parser.parse
