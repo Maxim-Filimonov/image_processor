@@ -20,4 +20,28 @@ describe ImageProcessor::Pages::IndexPage do
       expect(subject.thumbnails.first).to eq(:thumbnail)
     end
   end
+
+  describe '#nav' do
+    it 'returns nav element for each make' do
+      image_index = instance_double('ImageProcessor::ImageIndex', makes: [
+        instance_double('ImageProcessor::Make', name: 'CANON'),
+        instance_double('ImageProcessor::Make', name: 'NIKON')
+      ])
+
+      subject = described_class.new(image_index: image_index)
+
+      expect(subject.nav.length).to eq(2)
+    end
+
+    it 'users make url' do
+      image_index = instance_double('ImageProcessor::ImageIndex', makes: [
+        instance_double('ImageProcessor::Make', name: 'CANON')
+      ])
+
+      subject = described_class.new(image_index: image_index)
+
+      expect(subject.nav.first.url).to eq('/canon/index.html')
+      expect(subject.nav.first.name).to eq('CANON')
+    end
+  end
 end
