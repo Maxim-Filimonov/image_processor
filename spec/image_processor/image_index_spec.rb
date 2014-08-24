@@ -17,4 +17,16 @@ describe ImageProcessor::ImageIndex do
       expect(subject.makes['CANON']).to eq(make)
     end
   end
+
+  describe '#all_models' do
+    it 'returns all models from all makes' do
+      make = subject.add_make('CANON')
+      make.add_model(double(model: 'canon 1'))
+      make.add_model(double(model: 'canon 2'))
+      make = subject.add_make('NIKON')
+      make.add_model(double(model: 'nikon 1'))
+
+      expect(subject.all_models.map(&:model)).to contain_exactly('canon 1', 'canon 2', 'nikon 1')      
+    end
+  end
 end

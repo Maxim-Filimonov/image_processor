@@ -7,6 +7,7 @@ module ImageProcessor
     def initialize(args={})
       @parser = args[:parser]
     end
+    
     def process
       works = parser.parse
 
