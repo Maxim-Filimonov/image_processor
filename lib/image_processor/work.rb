@@ -5,7 +5,7 @@ module ImageProcessor
 
     def initialize(args={})
       @model = args.fetch(:model)
-      @make = args.fetch(:make)
+      @make = args[:make].empty? ? 'unrecognized' : args[:make]
       @urls = args.fetch(:urls)
       original_time = args.fetch(:original_time)
       if original_time.empty?

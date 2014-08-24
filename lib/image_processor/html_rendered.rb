@@ -18,10 +18,10 @@ module ImageProcessor
       models_pages = {}
       image_index.makes.each do |_, make|
         make_page = Pages::MakePage.new(make: make, template: template)
-        makes_pages[make_page.path.to_sym] = make_page.result
+        makes_pages[make_page.path] = make_page.result
         make.all_models.each do |model|
           model_page = Pages::ModelPage.new(model: model, template: template)
-          models_pages[model_page.path.to_sym] = model_page.result
+          models_pages[model_page.path] = model_page.result
         end
       end
       {

@@ -37,14 +37,18 @@ describe ImageProcessor::HTMLRenderer do
       expect(result[:models].values.length).to eq(2)
     end
 
-    # it 'does magic' do
-    #   require 'image_processor/batch_processor'
-    #   require 'image_processor/file_parser'
-    #   file_path = File.expand_path('../../../data/works.xml', __FILE__)
-    #   parser = ImageProcessor::FileParser.new(file_path: file_path)
-    #   process_result = ImageProcessor::BatchProcessor.new(parser: parser).process
-    #
-    #   described_class.new(image_index: process_result).render
-    # end
+    it 'does magic' do
+      require 'image_processor/batch_processor'
+      require 'image_processor/file_parser'
+      require 'image_processor/output_writer'
+      file_path = File.expand_path('../../../data/works.xml', __FILE__)
+      parser = ImageProcessor::FileParser.new(file_path: file_path)
+      process_result = ImageProcessor::BatchProcessor.new(parser: parser).process
+
+      result = described_class.new(image_index: process_result).render
+
+      writer = ImageProcessor::OutputWriter.new(result, out_dir: '/Users/maxim/repos/redbubble_image_process/output/')
+      writer.write
+    end
   end
 end

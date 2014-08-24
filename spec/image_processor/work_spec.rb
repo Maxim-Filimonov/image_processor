@@ -11,5 +11,13 @@ describe ImageProcessor::Work do
       result = described_class.new(args)
       expect(result.original_time).to_not be_nil
     end
+
+    it 'uses unrecognized when make is not provided' do
+      args[:make] = ""
+
+      result = described_class.new(args)
+
+      expect(result.make).to eq('unrecognized')
+    end
   end
 end
