@@ -1,5 +1,5 @@
 require 'image_processor/file_parser'
-require 'image_processor/make'
+require 'image_processor/image_index'
 require 'ostruct'
 
 module ImageProcessor
@@ -12,13 +12,10 @@ module ImageProcessor
     def process
       works = parser.parse
 
-      works.inject(OpenStruct.new(makes: {}, models: {})) { |sum, work|
-        sum.makes[work.make] ||= Make.new
-        make = sum.makes[work.make]
-        make.name = work.make
-        make.models[work.model] ||= []
-        make.models[work.model] << work
-        sum
+      works.inject(ImageIndex.new) { |index, work|
+        make = index.add_make(work.make)
+        make.add_model(work)
+        index
       }
     end
   end
