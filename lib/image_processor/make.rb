@@ -12,6 +12,10 @@ module ImageProcessor
       models.map {|k,v| v }.flatten
     end
 
+    def model_names
+      models.keys
+    end
+
     def add_model(work)
       models[work.model] ||= []
       models[work.model] << work

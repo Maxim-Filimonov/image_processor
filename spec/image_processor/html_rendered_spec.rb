@@ -13,6 +13,20 @@ describe ImageProcessor::HTMLRenderer do
       expect(result[:index]).to_not be_nil
     end
 
+    it 'generates page for each make' do
+      image_index = ImageProcessor::ImageIndex.new
+      image_index.add_make('CANON')
+      image_index.add_make('NIKON')
+      subject = described_class.new(image_index: image_index)
+
+      result = subject.render
+
+      expect(result[:makes].values.length).to eq(2)
+    end
+
+    it 'generates page for each model' do
+    end
+
     # it 'does magic' do
     #   require 'image_processor/batch_processor'
     #   require 'image_processor/file_parser'

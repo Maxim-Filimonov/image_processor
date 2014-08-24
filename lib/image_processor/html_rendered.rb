@@ -1,5 +1,6 @@
 require 'erb'
 require 'image_processor/pages/index_page'
+require 'image_processor/pages/make_page'
 
 module ImageProcessor
   class HTMLRenderer
@@ -13,7 +14,16 @@ module ImageProcessor
       template = File.read(File.expand_path('../../../data/output-template.erb', __FILE__))
       index_page = Pages::IndexPage.new(image_index: image_index, template: template)
       index = index_page.result
-      { index: index }
+      makes_pages = image_index.makes.inject({}) {|sum, make_el|
+        make = make_el[1]
+        page = Pages::MakePage.new(make: make, template: template)
+        sum[page.path.to_sym] = page.result
+        sum
+      }
+      {
+        index: index,
+        makes: makes_pages
+      }
     end
 
     def title
