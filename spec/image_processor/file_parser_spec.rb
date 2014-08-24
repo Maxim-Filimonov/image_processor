@@ -39,7 +39,8 @@ describe ImageProcessor::FileParser do
 
   context 'with real file' do
     it 'can parse it without exceptions' do
-      subject = described_class.new(file_path: '/Users/maxim/repos/redbubble_image_process/data/works.xml')
+      file_path = File.expand_path('../../../data/works.xml', __FILE__)
+      subject = described_class.new(file_path: file_path)
       subject.parse
     end
   end
