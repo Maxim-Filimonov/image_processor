@@ -3,7 +3,7 @@ require 'image_processor/pages/make_page'
 describe ImageProcessor::Pages::MakePage do
   describe '#thumbnails' do
     it 'displays only first 10 thumbnails' do
-      make = instance_double('ImageProcessor::Make', all_models: (0..12))
+      make = instance_double('ImageProcessor::Make', all_works: (0..12))
 
       subject = described_class.new(make: make)
 
@@ -11,7 +11,7 @@ describe ImageProcessor::Pages::MakePage do
     end
 
     it 'returns thumbnail' do
-      make = instance_double('ImageProcessor::Make', all_models: [1])
+      make = instance_double('ImageProcessor::Make', all_works: [1])
       thumbnail = class_double('ImageProcessor::Thumbnail').as_stubbed_const
       allow(thumbnail).to receive(:new).and_return(:thumbnail)
 

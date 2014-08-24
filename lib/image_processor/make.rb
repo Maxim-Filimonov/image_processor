@@ -11,7 +11,11 @@ module ImageProcessor
     end
 
     def all_models
-      models.map {|k,v| v.works }.flatten
+      models.values
+    end
+
+    def all_works
+      models.values.map { |model| model.works }.flatten
     end
 
     def model_names

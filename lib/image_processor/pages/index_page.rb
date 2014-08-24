@@ -14,7 +14,7 @@ module ImageProcessor
       end
 
       def thumbnails
-        image_index.all_models.first(10).map { |model|
+        image_index.all_works.first(10).map { |model|
           Thumbnail.new(model)
         }
       end

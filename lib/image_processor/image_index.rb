@@ -12,8 +12,8 @@ module ImageProcessor
       makes[name]
     end
 
-    def all_models
-      makes.map {|k,v| v.all_models }.flatten
+    def all_works
+      makes.map {|k,v| v.all_works }.flatten
     end
   end
 end

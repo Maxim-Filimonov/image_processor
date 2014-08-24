@@ -25,6 +25,16 @@ describe ImageProcessor::HTMLRenderer do
     end
 
     it 'generates page for each model' do
+      image_index = ImageProcessor::ImageIndex.new
+      make = image_index.add_make('CANON')
+      make.add_model(instance_double('ImageProcessor::Work', model: 'canon 1', urls: {}))
+      make.add_model(instance_double('ImageProcess::Work', model: 'canon 2', urls: {}))
+      subject = described_class.new(image_index: image_index)
+
+
+      result = subject.render
+
+      expect(result[:models].values.length).to eq(2)
     end
 
     # it 'does magic' do

@@ -16,8 +16,8 @@ describe ImageProcessor::BatchProcessor do
       result = subject.process
 
       expect(result.makes.keys).to contain_exactly('CANON', 'NIKON')
-      expect(result.makes['CANON'].all_models.length).to eq(2)
-      expect(result.makes['NIKON'].all_models.length).to eq(1)
+      expect(result.makes['CANON'].all_works.length).to eq(2)
+      expect(result.makes['NIKON'].all_works.length).to eq(1)
     end
 
     it 'groups work by model in make' do

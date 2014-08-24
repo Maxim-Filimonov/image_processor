@@ -8,7 +8,18 @@ describe ImageProcessor::Make do
       subject.add_model(canon)
       subject.add_model(nikon)
 
-      expect(subject.all_models).to contain_exactly(canon, nikon)
+      expect(subject.all_models.map(&:name)).to contain_exactly('canon model', 'nikon model')
+    end
+  end
+
+  describe '#all_works' do
+    it 'returns all models' do
+      canon = instance_double('ImageProcessor::Work', model:'canon model')
+      nikon = instance_double('ImageProcessor::Work', model: 'nikon model')
+      subject.add_model(canon)
+      subject.add_model(nikon)
+
+      expect(subject.all_works).to contain_exactly(canon, nikon)
     end
   end
 
