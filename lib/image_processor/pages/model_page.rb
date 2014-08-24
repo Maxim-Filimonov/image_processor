@@ -40,7 +40,7 @@ module ImageProcessor
       end
 
       def title
-        "Image index"
+        "Model #{model.name}"
       end
     end
   end

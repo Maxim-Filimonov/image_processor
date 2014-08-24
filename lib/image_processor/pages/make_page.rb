@@ -43,7 +43,7 @@ module ImageProcessor
       end
 
       def title
-        make.name
+        "Make #{make.name}"
       end
     end
   end
