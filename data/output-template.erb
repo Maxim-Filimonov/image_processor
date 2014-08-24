@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <style type="text/css">
+    nav {
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><%= title %></h1>
+
+    <nav>
+      <ul>
+        <% nav.each do |link| %>
+          <li>
+            <a href="<%= link.url%>"><%= link.name %></a>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="gallery">
+    <% thumbnails.each do |thumbnail| %>
+      <a href="<%= thumbnail.url %>">
+        <img src="<%= thumbnail.url %>"/>
+      </a>
+    <% end %>
+  </div>
+</body>
+</html>
