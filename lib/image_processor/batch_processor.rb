@@ -7,7 +7,7 @@ module ImageProcessor
     attr_reader :parser
 
     def initialize(args={})
-      @parser = args.fetch(:parser, ImageProcessor::FileParser.new)
+      @parser = args[:parser] || ImageProcessor::FileParser.new
     end
     def process
       works = parser.parse

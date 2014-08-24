@@ -1,5 +1,10 @@
+# Add lib to load path
 $:.push(File.join(__FILE__, "../lib"))
 
+# Load support files
+Dir[File.join(File.dirname(__FILE__), "/support/**/*.rb")].each {|f| require f}
+
+require 'rspec/its'
 RSpec.configure do |config|
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
@@ -23,4 +28,6 @@ RSpec.configure do |config|
 
     mocks.verify_partial_doubles = true
   end
+
+  config.include FixtureLoader
 end
