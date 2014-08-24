@@ -23,10 +23,10 @@ describe ImageProcessor::Pages::IndexPage do
 
   describe '#nav' do
     it 'returns nav element for each make' do
-      image_index = instance_double('ImageProcessor::ImageIndex', makes: [
-        instance_double('ImageProcessor::Make', name: 'CANON'),
-        instance_double('ImageProcessor::Make', name: 'NIKON')
-      ])
+      image_index = instance_double('ImageProcessor::ImageIndex', makes: {
+        'CANON' => instance_double('ImageProcessor::Make', name: 'CANON'),
+        'NIKON' => instance_double('ImageProcessor::Make', name: 'NIKON')
+      })
 
       subject = described_class.new(image_index: image_index)
 
@@ -34,9 +34,9 @@ describe ImageProcessor::Pages::IndexPage do
     end
 
     it 'users make url' do
-      image_index = instance_double('ImageProcessor::ImageIndex', makes: [
-        instance_double('ImageProcessor::Make', name: 'CANON')
-      ])
+      image_index = instance_double('ImageProcessor::ImageIndex', makes: {
+        'CANON' => instance_double('ImageProcessor::Make', name: 'CANON')
+      })
 
       subject = described_class.new(image_index: image_index)
 
