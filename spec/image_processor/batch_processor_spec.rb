@@ -15,24 +15,24 @@ describe ImageProcessor::BatchProcessor do
 
       result = subject.process
       expect(result.makes.keys).to contain_exactly('CANON', 'NIKON')
-      expect(result.makes['CANON'].length).to eq(2)
-      expect(result.makes['NIKON'].length).to eq(1)
+      expect(result.makes['CANON'].all_models.length).to eq(2)
+      expect(result.makes['NIKON'].all_models.length).to eq(1)
     end
 
     it 'groups work by model' do
       file_parser = instance_double('ImageProcessor::FileParser')
       subject = described_class.new(parser: file_parser)
       works = [
-        instance_double('ImageProcessor::Work', name: 'canon1', model: 'Canon EOS 20D', make: ''),
-        instance_double('ImageProcessor::Work', name: 'canon2', model: 'Canon EOS 20D', make: ''),
-        instance_double('ImageProcessor::Work', name: 'canon3', model: 'Canon EOS 70D', make: ''),
+        instance_double('ImageProcessor::Work', name: 'canon1', model: 'Canon EOS 20D', make: 'canon'),
+        instance_double('ImageProcessor::Work', name: 'canon2', model: 'Canon EOS 20D', make: 'canon'),
+        instance_double('ImageProcessor::Work', name: 'canon3', model: 'Canon EOS 70D', make: 'canon'),
       ]
 
       allow(file_parser).to receive(:parse).and_return(works)
 
       result = subject.process
-      expect(result.models['Canon EOS 20D'].length).to eq(2)
-      expect(result.models['Canon EOS 70D'].length).to eq(1)
+      expect(result.makes['canon'].models['Canon EOS 20D'].length).to eq(2)
+      expect(result.makes['canon'].models['Canon EOS 70D'].length).to eq(1)
     end
   end
 end

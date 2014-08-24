@@ -1,4 +1,5 @@
 require 'image_processor/file_parser'
+require 'image_processor/make'
 require 'ostruct'
 
 module ImageProcessor
@@ -12,10 +13,11 @@ module ImageProcessor
       works = parser.parse
 
       works.inject(OpenStruct.new(makes: {}, models: {})) { |sum, work|
-        sum.makes[work.make] ||= []
-        sum.makes[work.make] << work
-        sum.models[work.model] ||= []
-        sum.models[work.model] << work
+        sum.makes[work.make] ||= Make.new
+        make = sum.makes[work.make]
+        make.name = work.make
+        make.models[work.model] ||= []
+        make.models[work.model] << work
         sum
       }
     end
