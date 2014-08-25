@@ -9,6 +9,7 @@ GEM
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     fakefs (0.5.2)
+    highline (1.6.21)
     method_source (0.8.2)
     mini_portile (0.6.0)
     nokogiri (1.6.3.1)
@@ -42,6 +43,7 @@ PLATFORMS
 
 DEPENDENCIES
   fakefs
+  highline
   nokogiri
   pry-byebug
   rspec
