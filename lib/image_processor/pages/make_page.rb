@@ -1,16 +1,15 @@
-require 'erb'
+require 'image_processor/pages/base_page'
 require 'image_processor/thumbnail'
 require 'image_processor/nav_link'
 
 module ImageProcessor
   module Pages
-    class MakePage < ERB
+    class MakePage < BasePage
       attr_reader :make, :router
       def initialize(args={})
         @make = args.fetch(:make)
-        @template = args.fetch(:template, self.class.template)
         @router = args.fetch(:router)
-        super(@template)
+        super(args)
       end
 
       def thumbnails
@@ -30,16 +29,8 @@ module ImageProcessor
         urls |= model_urls
       end
 
-      def result
-        super(binding)
-      end
-
       def path
         router.make_path(make.name, file_path: true)
-      end
-
-      def self.template
-       File.read(File.expand_path('../../../../data/output-template.erb', __FILE__))
       end
 
       def title

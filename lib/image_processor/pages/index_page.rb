@@ -1,16 +1,15 @@
-require 'erb'
+require 'image_processor/pages/base_page'
 require 'image_processor/thumbnail'
 require 'image_processor/nav_link'
 
 module ImageProcessor
   module Pages
-    class IndexPage < ERB
+    class IndexPage < BasePage
       attr_reader :image_index, :router
       def initialize(args={})
         @image_index = args.fetch(:image_index)
-        @template = args.fetch(:template, self.class.template)
         @router = args.fetch(:router)
-        super(@template)
+        super(args)
       end
 
       def thumbnails
@@ -25,16 +24,8 @@ module ImageProcessor
         }
       end
 
-      def result
-        super(binding)
-      end
-
       def path
         router.index_path
-      end
-
-      def self.template
-       File.read(File.expand_path('../../../../data/output-template.erb', __FILE__))
       end
 
       def title
