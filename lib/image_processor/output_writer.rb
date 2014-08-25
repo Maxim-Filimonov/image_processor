@@ -9,6 +9,9 @@ module ImageProcessor
     end
 
     def write
+      if File.exists?(out_dir)
+        FileUtils.rm_r(out_dir)
+      end
       write_index if render[:index]
       write_makes if render[:makes]
       write_models if render[:models]

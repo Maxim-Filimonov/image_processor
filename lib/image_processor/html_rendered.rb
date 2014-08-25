@@ -5,22 +5,24 @@ require 'image_processor/pages/model_page'
 
 module ImageProcessor
   class HTMLRenderer
-    attr_reader :image_index
+    attr_reader :image_index, :router
 
     def initialize(args={})
       @image_index = args.fetch(:image_index)
+      @router = args.fetch(:router)
     end
 
     def render
-      index_page = Pages::IndexPage.new(image_index: image_index, template: template)
+      index_page = Pages::IndexPage.new(image_index: image_index, router: router,
+        template: template)
       index = index_page.result
       makes_pages = {}
       models_pages = {}
       image_index.makes.each do |_, make|
-        make_page = Pages::MakePage.new(make: make, template: template)
+        make_page = Pages::MakePage.new(make: make, router: router, template: template)
         makes_pages[make_page.path] = make_page.result
         make.all_models.each do |model|
-          model_page = Pages::ModelPage.new(model: model, template: template)
+          model_page = Pages::ModelPage.new(model: model, router: router, template: template)
           models_pages[model_page.path] = model_page.result
         end
       end

@@ -40,5 +40,19 @@ describe ImageProcessor::OutputWriter do
 
     expect(File.read('/tmp/canon/canon_d20.html')).to eq('content')
   end
+
+  it 'cleans output directory' do
+    input = {
+      index: 'content'
+    }
+    FileUtils.mkdir_p('/tmp')
+    FileUtils.touch('/tmp/trash')
+
+    subject = described_class.new(input, out_dir: '/tmp')
+
+    subject.write
+
+    expect(File.exists?('/tmp/trash')).to eq(false)
+  end
 end
 end

@@ -1,15 +1,15 @@
 require 'erb'
 require 'image_processor/thumbnail'
 require 'image_processor/nav_link'
-require 'image_processor/routes'
 
 module ImageProcessor
   module Pages
     class IndexPage < ERB
-      attr_reader :image_index
+      attr_reader :image_index, :router
       def initialize(args={})
         @image_index = args.fetch(:image_index)
         @template = args.fetch(:template, self.class.template)
+        @router = args.fetch(:router)
         super(@template)
       end
 
@@ -21,7 +21,7 @@ module ImageProcessor
 
       def nav
         image_index.makes.map { |make, _|
-          nav_link = NavLink.new(url: Routes.make_path(make), name: make)
+          nav_link = NavLink.new(url: router.make_path(make), name: make)
         }
       end
 
@@ -30,7 +30,7 @@ module ImageProcessor
       end
 
       def path
-        Routers.index_path
+        router.index_path
       end
 
       def self.template
