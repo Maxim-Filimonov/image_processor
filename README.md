@@ -21,8 +21,8 @@ chmod +x ./run.rb
 ### Assumptions
 - Performance was not a consideration. As it is not clear what are exact performance reqs
 performance has been considered not important.
-- Styling - it was not clear from the problem description is it expected that separate styles will be provided with the HTML.
-Due to that no style has been used on the generated pages.
+- Styling - it was not clear from the problem description are separate styles gonna be provided
+to be used later with generated HTML. Due to that no styling has been done.
 
 ### Problem description
 The system has many digital images often taken with a camera.
