@@ -4,8 +4,8 @@ module ImageProcessor
     attr_reader :model, :make, :urls, :original_time
 
     def initialize(args={})
-      @model = args.fetch(:model)
-      @make = args[:make].empty? ? 'unrecognized' : args[:make]
+      @model = args[:model].empty? ? 'Unrecognized model' : args[:model]
+      @make = args[:make].empty? ? 'Unrecognized make' : args[:make]
       @urls = args.fetch(:urls)
       original_time = args.fetch(:original_time)
       if original_time.empty?
