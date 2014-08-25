@@ -1,3 +1,23 @@
+## Install dependencies
+```
+bundle install
+```
+
+## Tests
+```
+rspec
+```
+
+## Interactive console
+```
+ruby run.rb
+```
+Alternatively
+```
+chmod +x ./run.rb
+./run.rb
+```
+
 ### Assumptions
 - Performance was not a consideration. As it is not clear what are exact performance reqs
 performance has been considered not important.
