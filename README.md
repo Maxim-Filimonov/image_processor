@@ -1,3 +1,9 @@
+### Assumptions
+- Performance was not a consideration. As it is not clear what are exact performance reqs
+performance has been considered not important.
+- Styling - it was not clear from the problem description is it expected that separate styles will be provided with the HTML.
+Due to that no style has been used on the generated pages.
+
 ### Problem description
 The system has many digital images often taken with a camera.
 We have exported EXIF data from a selection of these images.
