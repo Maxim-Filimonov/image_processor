@@ -10,8 +10,7 @@ entries[:input_file] = ask('where is your data located (relative to current dire
   q.validate = -> (p) { File.exists?(p) }
 end
 
-entries[:out_dir] = ask('where do you want output to be saved to') do |q|
-end
+entries[:out_dir] = ask('where do you want output to be saved to (relative to current directory)')
 
 input_file = File.expand_path(entries[:input_file],'.')
 out_dir = File.expand_path(entries[:out_dir],'.')
