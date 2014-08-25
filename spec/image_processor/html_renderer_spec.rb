@@ -1,4 +1,4 @@
-require 'image_processor/html_rendered'
+require 'image_processor/html_renderer'
 require 'image_processor/image_index'
 require 'image_processor/router'
 

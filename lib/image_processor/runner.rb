@@ -1,7 +1,7 @@
 require 'image_processor/batch_processor'
 require 'image_processor/file_parser'
 require 'image_processor/output_writer'
-require 'image_processor/html_rendered'
+require 'image_processor/html_renderer'
 require 'image_processor/router'
 
 module ImageProcessor
