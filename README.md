@@ -12,6 +12,12 @@ rspec
 ```
 ruby run.rb
 ```
+
+## Non interactive
+```
+ruby run.rb -i data/works.xml -o 'out3' -cmd
+```
+
 Alternatively
 ```
 chmod +x ./run.rb
